@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Submit Image</title>
+<script type="text/javascript">
+	function url_validate() {
+		var url = document.forms["image_form"]["url"].value;
+		if (url == null || url == "") {
+			document.getElementById('url').style.border = '2px solid red';
+			document.getElementById('url_errfn').style.display = 'block';
+			document.getElementById('url_errfn').innerHTML = "Please provide URL.";
+			return false;
+		} else {
+			document.getElementById('url').style.border = '2px solid green';
+			document.getElementById('url_errfn').style.display = 'none';
+		}
+		var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+		if (!pattern.test(url)) {
+			document.getElementById('url').style.border = '2px solid red';
+			document.getElementById('url_errfn').style.display = 'block';
+			document.getElementById('url_errfn').innerHTML = "Url is invalid.";
+			return false;
+		} else {
+			document.getElementById('url').style.border = '2px solid green';
+			document.getElementById('url_errfn').style.display = 'none';
+		}
+
+	}
+
+	function image_link_validate() {
+		var image_link = document.forms["image_form"]["image_link"].value;
+		if (image_link == null || image_link == "") {
+			document.getElementById('image_link').style.border = '2px solid red';
+			document.getElementById('image_link_errfn').style.display = 'block';
+			document.getElementById('image_link_errfn').innerHTML = "Please provide Image Link.";
+			return false;
+		} else {
+			document.getElementById('image_link').style.border = '2px solid green';
+			document.getElementById('image_link_errfn').style.display = 'none';
+		}
+		var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+		if (!pattern.test(image_link)) {
+			document.getElementById('image_link').style.border = '2px solid red';
+			document.getElementById('image_link_errfn').style.display = 'block';
+			document.getElementById('image_link_errfn').innerHTML = "Image Link is invalid.";
+			return false;
+		} else {
+			document.getElementById('image_link').style.border = '2px solid green';
+			document.getElementById('image_link_errfn').style.display = 'none';
+		}
+
+	}
+
+	function image_width_validate() {
+		var image_width = document.forms["image_form"]["image_width"].value;
+		if (image_width == null || image_width == "") {
+			document.getElementById('image_width').style.border = '2px solid red';
+			document.getElementById('image_width_errfn').style.display = 'block';
+			document.getElementById('image_width_errfn').innerHTML = "Please provide Image Width.";
+			return false;
+		} else {
+			document.getElementById('image_width').style.border = '2px solid green';
+			document.getElementById('image_width_errfn').style.display = 'none';
+		}
+		if (isNumeric(image_width) == false) {
+			document.getElementById('image_width').style.border = '2px solid red';
+			document.getElementById('image_width_errfn').style.display = 'block';
+			document.getElementById('image_width_errfn').innerHTML = "Provide integer value for width.";
+			return false;
+		} else {
+			document.getElementById('image_width').style.border = '2px solid green';
+			document.getElementById('image_width_errfn').style.display = 'none';
+		}
+
+	}
+
+	function image_height_validate() {
+		var image_height = document.forms["image_form"]["image_height"].value;
+		if (image_height == null || image_height == "") {
+			document.getElementById('image_height').style.border = '2px solid red';
+			document.getElementById('image_height_errfn').style.display = 'block';
+			document.getElementById('image_height_errfn').innerHTML = "Please provide Image Height.";
+			return false;
+		} else {
+			document.getElementById('image_height').style.border = '2px solid green';
+			document.getElementById('image_height_errfn').style.display = 'none';
+		}
+		if (isNumeric(image_height) == false) {
+			document.getElementById('image_height').style.border = '2px solid red';
+			document.getElementById('image_height_errfn').style.display = 'block';
+			document.getElementById('image_height_errfn').innerHTML = "Provide integer value for height.";
+			return false;
+		} else {
+			document.getElementById('image_height').style.border = '2px solid green';
+			document.getElementById('image_height_errfn').style.display = 'none';
+		}
+
+	}
+
+	function validateForm() {
+		var url = document.forms["image_form"]["url"].value;
+		var image_link = document.forms["image_form"]["image_link"].value;
+		var image_width = document.forms["image_form"]["image_width"].value;
+		var image_height = document.forms["image_form"]["image_height"].value;
+
+		if (url == null || url == "") {
+			// document.getElementById('url_errfn').innerHTML="Please provide URL.";
+			return false;
+		} else if (image_link == null || image_link == "") {
+			//  alert("Please provide Image Link.");
+			return false;
+		} else if (image_width == null || image_width == "") {
+			// alert("Please provide Image Width.");
+			return false;
+		} else if (image_height == null || image_height == "") {
+			// alert("Please provide Image Height.");
+			return false;
+		}
+
+		var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+		if (!pattern.test(url)) {
+			// alert("Url is invalid");
+			return false;
+		}
+		if (!pattern.test(image_link)) {
+			// alert("Image link is invalid");
+			return false;
+		}
+
+		if (isNumeric(image_width) == false && isNumeric(image_height) == false) {
+			// alert("Provide integer value for width & height."); 
+			return false;
+		} else if (isNumeric(image_width) == false) {
+			// alert("Provide integer value for width."); 
+			return false;
+		} else if (isNumeric(image_height) == false) {
+			// alert("Provide integer value for height."); 
+			return false;
+		}
+	}
+
+	function showCheck() {
+		if (document.getElementById('yesCheck').checked) {
+			document.getElementById('ifyes').style.display = 'block';
+		} else {
+			document.getElementById('ifyes').style.display = 'none';
+		}
+	}
+
+	function isNumeric(str) {
+		var allowedChars = "0123456789"; //  For Checking Decimal , allowedChars = "0123456789.";
+		var isDigit = true;
+		var char;
+		for (i = 0; i < str.length && isDigit == true; i++) {
+			char = str.charAt(i);
+			if (allowedChars.indexOf(char) == -1)
+				isDigit = false;
+		}
+		return isDigit;
+
+	}
+</script>
+</head>
+<body>
+<form action="image.jsp" method="POST" name="image_form"
+		onsubmit="return validateForm()">
+		Anchor URL :<br> <input type="text" id="url" onblur="url_validate()"
+			name="url">
+		<div id="url_errfn" style="display: none"></div>
+		<br>
+		<br> Image Link :<br> <input type="text" id="image_link"
+			onblur="image_link_validate()" name="image_link">
+		<div id="image_link_errfn" style="display: none"></div>
+		<br>
+		<br> Image Width :<br> <input type="text" id="image_width"
+			onblur="image_width_validate()" name="image_width">
+		<div id="image_width_errfn" style="display: none"></div>
+		<br>
+		<br> Image Height :<br> <input type="text" id="image_height"
+			onblur="image_height_validate()" name="image_height">
+		<div id="image_height_errfn" style="display: none"></div>
+		<br>
+		<br> <input type="radio" name="device_type" value="desktop"
+			onclick="javascript:showCheck();" checked> Desktop <input
+			type="radio" name="device_type" value="mobile" id="yesCheck"
+			onclick="javascript:showCheck();"> Mobile
+		<div id="ifyes" style="display: none">
+			<br> <select name="os">
+				<option value="select_os">Select OS</option>
+				<option value="all_mobile">All Mobile</option>
+				<option value="android">Android</option>
+			</select>
+		</div>
+		<br> <input type="radio" name="site" value="website" checked>
+		Website <input type="radio" name="site" value="blog"> Blog<br>
+		<br> <input type="submit" name="submit" value="Submit">
+	</form>
+	<br><br><a href="show.jsp">Show All Popups</a>
+</body>
+</html>
